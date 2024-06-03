@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { TaskType } from ".";
 import { Task } from "../../parts/dashboard";
+import { useState } from "react";
+import { NewTask } from "../../parts/newTask";
 
 type DashboardLayoutProps = {
   tasks: TaskType[];
 };
 
 export const DashboardLayout = ({ tasks }: DashboardLayoutProps) => {
+  const [isNewTaskAdd, setIsNewTaskAdd] = useState<boolean>(false);
   return (
     <Wrapper>
       <Title>課題一覧</Title>
@@ -23,7 +26,14 @@ export const DashboardLayout = ({ tasks }: DashboardLayoutProps) => {
         })}
       </TasksWrapper>
       <AddNewTaskWrapper>
-        <Button>課題を追加</Button>
+        <Button
+          onClick={() => {
+            setIsNewTaskAdd(!isNewTaskAdd);
+          }}
+        >
+          {isNewTaskAdd ? "課題の追加を中止" : "課題の追加"}
+        </Button>
+        {isNewTaskAdd && <NewTask setIsOpen={setIsNewTaskAdd} />}
       </AddNewTaskWrapper>
     </Wrapper>
   );
@@ -51,7 +61,9 @@ const TasksWrapper = styled.div`
 
 const AddNewTaskWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 50px;
 `;
 
