@@ -3,9 +3,9 @@ import { TaskType } from "../../components/dashboard";
 import { useEffect, useState } from "react";
 import { ChangeTask } from "../changeTask";
 
-type TaskProps = TaskType;
+type TaskProps = TaskType & { index: number };
 
-export const Task = ({ name, detail, link }: TaskProps) => {
+export const Task = ({ name, detail, link, index }: TaskProps) => {
   const [isDone, setIsDone] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isChange, setIsChange] = useState<boolean>(false);
@@ -35,7 +35,7 @@ export const Task = ({ name, detail, link }: TaskProps) => {
         <Button href={link}>提出</Button>
       </NoDetailTaskWrapper>
       {isOpen && <DetailWrapper>{detail}</DetailWrapper>}
-      {isChange && <ChangeTask setIsOpen={setIsChange} />}
+      {isChange && <ChangeTask setIsOpen={setIsChange} changeIndex={index} />}
     </TaskWrapper>
   );
 };

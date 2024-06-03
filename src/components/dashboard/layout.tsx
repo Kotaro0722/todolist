@@ -21,6 +21,7 @@ export const DashboardLayout = ({ tasks }: DashboardLayoutProps) => {
               detail={task.detail}
               link={task.link}
               key={index}
+              index={index}
             />
           );
         })}

@@ -4,9 +4,10 @@ import { TaskContext } from "../../components/dashboard";
 
 type ChangeTaskProps = {
   setIsOpen: (isOpen: boolean) => void;
+  changeIndex: number;
 };
 
-export const ChangeTask = ({ setIsOpen }: ChangeTaskProps) => {
+export const ChangeTask = ({ setIsOpen, changeIndex }: ChangeTaskProps) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const detailRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
@@ -22,14 +23,18 @@ export const ChangeTask = ({ setIsOpen }: ChangeTaskProps) => {
     const newDetail = detailRef.current?.value || "";
     const newLink = linkRef.current?.value || "";
 
-    setTasks((prevTasks) => [
-      ...prevTasks,
-      {
-        name: newName,
-        detail: newDetail,
-        link: newLink,
-      },
-    ]);
+    setTasks((prevTasks) => {
+      const updatedTask = prevTasks.map((task, index) => {
+        return index == changeIndex
+          ? {
+              name: newName,
+              detail: newDetail,
+              link: newLink,
+            }
+          : task;
+      });
+      return updatedTask;
+    });
 
     if (nameRef.current) nameRef.current.value = "";
     if (detailRef.current) detailRef.current.value = "";
