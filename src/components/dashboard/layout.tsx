@@ -10,16 +10,18 @@ export const DashboardLayout = ({ tasks }: DashboardLayoutProps) => {
   return (
     <Wrapper>
       <Title>課題一覧</Title>
-      {tasks.map((task, index) => {
-        return (
-          <Task
-            name={task.name}
-            detail={task.detail}
-            link={task.link}
-            key={index}
-          />
-        );
-      })}
+      <TasksWrapper>
+        {tasks.map((task, index) => {
+          return (
+            <Task
+              name={task.name}
+              detail={task.detail}
+              link={task.link}
+              key={index}
+            />
+          );
+        })}
+      </TasksWrapper>
     </Wrapper>
   );
 };
@@ -35,4 +37,10 @@ const Wrapper = styled.div`
   background-color: #282c34;
   width: 100vw;
   height: 100vh;
+`;
+
+const TasksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;

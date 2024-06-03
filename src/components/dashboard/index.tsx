@@ -14,6 +14,11 @@ export const Dashboard = () => {
       detail: "耳コピ",
       link: "https://sola.sus.ac.jp/mod/assign/view.php?id=92756",
     },
+    {
+      name: "データベース論",
+      detail: "図書館貸し出しシステム",
+      link: "https://sola.sus.ac.jp/mod/assign/view.php?id=92756",
+    },
   ];
   return <DashboardLayout tasks={tasks} />;
 };

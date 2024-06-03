@@ -19,6 +19,7 @@ export const Task = ({ name, detail, link }: TaskProps) => {
           onClick={() => {
             setIsOpen(!isOpen);
           }}
+          isDone={isDone}
         >
           {name}
         </NameWrapper>
@@ -48,12 +49,18 @@ const Input = styled.input`
   transform: scale(1.5);
 `;
 
-const NameWrapper = styled.div`
+const NameWrapper = styled.div<{ isDone: boolean }>`
   background-color: white;
   padding: 5px;
   font-size: 20px;
   border-radius: 10px;
   cursor: pointer;
+  ${({ isDone }) =>
+    isDone &&
+    `
+    text-decoration:line-through;
+    background-color:gray;
+  `}
 `;
 
 const DetailWrapper = styled.div`
