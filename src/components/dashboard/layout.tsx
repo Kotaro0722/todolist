@@ -22,6 +22,9 @@ export const DashboardLayout = ({ tasks }: DashboardLayoutProps) => {
           );
         })}
       </TasksWrapper>
+      <AddNewTaskWrapper>
+        <Button>課題を追加</Button>
+      </AddNewTaskWrapper>
     </Wrapper>
   );
 };
@@ -29,6 +32,7 @@ export const DashboardLayout = ({ tasks }: DashboardLayoutProps) => {
 const Title = styled.header`
   display: flex;
   justify-content: center;
+  align-items: center;
   color: white;
   font-size: 40px;
 `;
@@ -43,4 +47,22 @@ const TasksWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+`;
+
+const AddNewTaskWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
+const Button = styled.div`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  background-color: silver;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
 `;
