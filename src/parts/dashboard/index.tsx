@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { TaskType } from "../../components/dashboard";
 import { useEffect, useState } from "react";
+import { ChangeTask } from "../changeTask";
 
 type TaskProps = TaskType;
 
 export const Task = ({ name, detail, link }: TaskProps) => {
   const [isDone, setIsDone] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isChange, setIsChange] = useState<boolean>(false);
   return (
     <TaskWrapper>
       <NoDetailTaskWrapper>
@@ -23,10 +25,17 @@ export const Task = ({ name, detail, link }: TaskProps) => {
         >
           {name}
         </NameWrapper>
+        <ChangeButton
+          onClick={() => {
+            setIsChange(!isChange);
+          }}
+        >
+          修正
+        </ChangeButton>
         <Button href={link}>提出</Button>
-        <Button href={link}>修正</Button>
       </NoDetailTaskWrapper>
       {isOpen && <DetailWrapper>{detail}</DetailWrapper>}
+      {isChange && <ChangeTask setIsOpen={setIsChange} />}
     </TaskWrapper>
   );
 };
@@ -82,4 +91,18 @@ const Button = styled.a`
   color: white;
   text-decoration: none;
   border-radius: 10px;
+`;
+
+const ChangeButton = styled.button`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  background-color: #b8b8b8;
+  color: white;
+  text-decoration: none;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
 `;
